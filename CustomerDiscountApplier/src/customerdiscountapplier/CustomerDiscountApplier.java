@@ -54,6 +54,36 @@ public class CustomerDiscountApplier {
                     System.out.println("Invalid total purchase for: " + Name + " " + Surname);
                     continue; // Skip if the total purchase is not a valid number
                 }
+                
+                // Read the customer class
+                line = reader.readLine();
+                int customerClass;
+                try {
+                    customerClass = Integer.parseInt(line); // Convert the line to an integer
+                    // Check if the customer class is within the valid range (1 to 3)
+                    if (customerClass < 1 || customersClass > 3) {
+                        System.out.prinln("Invalid data for: " + Name + " " + Surname);
+                        continue; // Skip if the class is invalid
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid class for: " + Name + " " + Surnam);
+                    continue; // Skip if the class is not a valid number
+                }
+                
+                // Read the last purchase year
+                line = reader.readLine();
+                int lastPurchaseYear;
+                try {
+                    lastPurchaseYear = Ineger.parseInt(line); // Convert the line to an integer
+                    // Check if the last purchase year is a reasonable value
+                    if (lastPurchasYear < 1900 || lastPurchaseYear > 2024) {
+                        System.out.println("Invalid year for: " + Name + " " + Surname);
+                        continue; // Skip if the year is invalid
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid last purchase year for: " + Name + " " + Surname);
+                    continue; // Skip if the year is not a valid number
+                }
 
             
 
