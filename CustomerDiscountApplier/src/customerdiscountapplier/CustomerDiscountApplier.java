@@ -24,4 +24,36 @@ public class CustomerDiscountApplier {
             
                         // Process each customer record until the end of the file
             while ((line = reader.readLine()) != null) {
+                                // Split the line into first name and last name
+                String[] names = line.split(" ");
+                // Validate the format of the names
+                if (names.length != 2 || !names[0].matches("[a-zA-Z]+") || names[1].isEmpty()) {
+                    System.out.println("Invalid name format for: " + line);
+                    continue; // Skip to the next customer if the name is invalid
+                }
+
+                String Name = names[0]; // First name
+                String Surname = names[1]; // Last name
+            }
+                            // Split the line into first name and last name
+                String[] names = line.split(" ");
+                // Validate the format of the names
+                if (names.length != 2 || !names[0].matches("[a-zA-Z]+") || names[1].isEmpty()) {
+                    System.out.println("Invalid name format for: " + line);
+                    continue; // Skip to the next customer if the name is invalid
+                }
+
+                String Name = names[0]; // First name
+                String Surname = names[1]; // Last name
+                // Read the total purchase amount for the customer
+                line = reader.readLine();
+                double totalSumOfPurchase;
+                try {
+                    totalSumOfPurchase = Double.parseDouble(line); // Convert the line to a double
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid total purchase for: " + Name + " " + Surname);
+                    continue; // Skip if the total purchase is not a valid number
+                }
+
+            
 
