@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package customerdiscountapplier;
 
 import java.io.BufferedReader;
@@ -13,7 +9,7 @@ import java.io.IOException;
 public class CustomerDiscountApplier {
 
     public static void main(String[] args) {
-        String inputFile = "customers.txt"; // Input file with customer data
+        String inputFile = "customers.txt"; // Name of the input file containing customer data
         String outputFile = "customerdiscount.txt"; // Output file for discounts
         
         // Use try-with-resources to automatically close files after operations
@@ -21,8 +17,8 @@ public class CustomerDiscountApplier {
              BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
 
             String line; // Variable to hold each line read from the input file
-            
-                        // Process each customer record until the end of the file
+      
+                         // Process each customer record until the end of the file
             while ((line = reader.readLine()) != null) {
                                 // Split the line into first name and last name
                 String[] names = line.split(" ");
@@ -31,20 +27,10 @@ public class CustomerDiscountApplier {
                     System.out.println("Invalid name format for: " + line);
                     continue; // Skip to the next customer if the name is invalid
                 }
-
+              
                 String Name = names[0]; // First name
                 String Surname = names[1]; // Last name
-            }
-                            // Split the line into first name and last name
-                String[] names = line.split(" ");
-                // Validate the format of the names
-                if (names.length != 2 || !names[0].matches("[a-zA-Z]+") || names[1].isEmpty()) {
-                    System.out.println("Invalid name format for: " + line);
-                    continue; // Skip to the next customer if the name is invalid
-                }
-
-                String Name = names[0]; // First name
-                String Surname = names[1]; // Last name
+                
                 // Read the total purchase amount for the customer
                 line = reader.readLine();
                 double totalSumOfPurchase;
@@ -86,10 +72,10 @@ public class CustomerDiscountApplier {
                 }
                 
                 // Calculate the final purchase value after applying the discount
-                double finalValue = calculateFinalValue(totalSumOfPurchase, customersClass, lastPurchaseYear);
+                double finalValue = calculateFinalValue(totalSumOfPurchase, customerClass, lastPurchaseYear);
                 
                 // Write the customer's name and the calculated final value to the output file
-                writer.write(Name + "  " + Surname); // This lane Writes the name
+                writer.write(Name + "  " + Surname); // Write the name
                 writer.newLine(); // Move to the next line
                 writer.write(String.valueOf(finalValue)); // Writes the final value
                 writer.newLine(); // Moves to the next line
@@ -100,6 +86,51 @@ public class CustomerDiscountApplier {
             System.out.prinln("An error occurred while reading or writing files: " + e.getMessage());
         }
     }
+    /**
+     * Calculates the final value after applying a discount based on customer class and last purchase year.
+     *
+     * @param totalPurchase   The total value of purchases made by the customer.
+     * @param customerClass   The customer's class (1, 2, or 3).
+     * @param lastPurchaseYear The year of the customer's last purchase.
+     * @return The final value after the discount is applied.
+     */
+    private static double calculateFinalValue(double totalPurchases, int customerClass, int lastPurchaseYear) {
+        double discount = 0.0; // Initialize discount amount
+        int currentYear = 2024; // Set the current year for comparison
+
+        // Determine the discount based on the customer's class and last purchase year
+        switch (customersClass) {
+            case 1: // Class 1 discounts
+                if (lastPurchaseYear == currentYear) {
+                    discount = totalPurchase * 0.30; // 30% discount for purchases made this year
+                } else if (lastPurchaseYear < currentYear - 5) {
+                    discount = totalPurchase * 0.10; // 10% discount if no purchase in the last 5 years
+                } else {
+                    discount = totalPurchase * 0.20; // 20% discount for purchases made in the last 5 years
+                }
+                break;
+            case 2: // Class 2 discounts
+                if (lastPurchaseYear == currentYear) {
+                    discount = totalPurchase * 0.15; // 15% discount for purchases made this year
+                } else if (lastPurchaseYear < currentYear) {
+                    discount = totalPurchase * 0.13; // 13% discount for past purchases
+                } else if (lastPurchaseYear < curentYear - 5) {
+                    discount = totalPurchase * 0.05; // 5% discount if no purchase in the last 5 years
+                }
+                break;
+            case 3: // Class 3 discounts
+                if (lastPurchaseYear == currentYear) {
+                    discount = totalPurchase * 0.03; // 3% discount for purchases made this year
+                }
+                break;
+        }
+
+        // Return the final value after applying the calculated discount
+        return totalPurchase - discount;
+    }
+}
+
+
 
 
             
