@@ -61,12 +61,12 @@ public class CustomerDiscountApplier {
                 try {
                     customerClass = Integer.parseInt(line); // Convert the line to an integer
                     // Check if the customer class is within the valid range (1 to 3)
-                    if (customerClass < 1 || customersClass > 3) {
-                        System.out.prinln("Invalid data for: " + Name + " " + Surname);
+                    if (customerClass < 1 || customerClass > 3) {
+                        System.out.println("Invalid data for: " + Name + " " + Surname);
                         continue; // Skip if the class is invalid
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("Invalid class for: " + Name + " " + Surnam);
+                    System.out.println("Invalid class for: " + Name + " " + Surname);
                     continue; // Skip if the class is not a valid number
                 }
                 
@@ -74,9 +74,9 @@ public class CustomerDiscountApplier {
                 line = reader.readLine();
                 int lastPurchaseYear;
                 try {
-                    lastPurchaseYear = Ineger.parseInt(line); // Convert the line to an integer
+                    lastPurchaseYear = Integer.parseInt(line); // Convert the line to an integer
                     // Check if the last purchase year is a reasonable value
-                    if (lastPurchasYear < 1900 || lastPurchaseYear > 2024) {
+                    if (lastPurchaseYear < 1900 || lastPurchaseYear > 2024) {
                         System.out.println("Invalid year for: " + Name + " " + Surname);
                         continue; // Skip if the year is invalid
                     }
@@ -84,6 +84,23 @@ public class CustomerDiscountApplier {
                     System.out.println("Invalid last purchase year for: " + Name + " " + Surname);
                     continue; // Skip if the year is not a valid number
                 }
+                
+                // Calculate the final purchase value after applying the discount
+                double finalValue = calculateFinalValue(totalSumOfPurchase, customersClass, lastPurchaseYear);
+                
+                // Write the customer's name and the calculated final value to the output file
+                writer.write(Name + "  " + Surname); // This lane Writes the name
+                writer.newLine(); // Move to the next line
+                writer.write(String.valueOf(finalValue)); // Writes the final value
+                writer.newLine(); // Moves to the next line
+                System.out.println("Final price for " + Name + " " + Surname + " : " + finalValue); // Prints finals value to the console
+            }
+        } catch (IOException e) {
+            // Handle any errors that occur during file reading or writing
+            System.out.prinln("An error occurred while reading or writing files: " + e.getMessage());
+        }
+    }
+
 
             
 
