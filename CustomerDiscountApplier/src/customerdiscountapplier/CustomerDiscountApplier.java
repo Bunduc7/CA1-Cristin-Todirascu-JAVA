@@ -83,7 +83,7 @@ public class CustomerDiscountApplier {
             }
         } catch (IOException e) {
             // Handle any errors that occur during file reading or writing
-            System.out.prinln("An error occurred while reading or writing files: " + e.getMessage());
+            System.out.println("An error occurred while reading or writing files: " + e.getMessage());
         }
     }
     /**
@@ -94,12 +94,12 @@ public class CustomerDiscountApplier {
      * @param lastPurchaseYear The year of the customer's last purchase.
      * @return The final value after the discount is applied.
      */
-    private static double calculateFinalValue(double totalPurchases, int customerClass, int lastPurchaseYear) {
+    private static double calculateFinalValue(double totalPurchase, int customerClass, int lastPurchaseYear) {
         double discount = 0.0; // Initialize discount amount
         int currentYear = 2024; // Set the current year for comparison
 
         // Determine the discount based on the customer's class and last purchase year
-        switch (customersClass) {
+        switch (customerClass) {
             case 1: // Class 1 discounts
                 if (lastPurchaseYear == currentYear) {
                     discount = totalPurchase * 0.30; // 30% discount for purchases made this year
@@ -114,7 +114,7 @@ public class CustomerDiscountApplier {
                     discount = totalPurchase * 0.15; // 15% discount for purchases made this year
                 } else if (lastPurchaseYear < currentYear) {
                     discount = totalPurchase * 0.13; // 13% discount for past purchases
-                } else if (lastPurchaseYear < curentYear - 5) {
+                } else if (lastPurchaseYear < currentYear - 5) {
                     discount = totalPurchase * 0.05; // 5% discount if no purchase in the last 5 years
                 }
                 break;
