@@ -1,5 +1,7 @@
 package customerdiscountapplier;
 
+// The link to GitHub repository: https://github.com/Bunduc7/CA1-Cristin-Todirascu-JAVA.git
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -10,7 +12,7 @@ public class CustomerDiscountApplier {
 
     public static void main(String[] args) {
         String inputFile = "customers.txt"; // Name of the input file containing customer data
-        String outputFile = "customerdiscount.txt"; // Output file for discounts
+        String outputFile = "customerdiscount.txt"; // This is going to come out as the Output file for discounts
         
         // Use try-with-resources to automatically close files after operations
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
